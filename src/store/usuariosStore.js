@@ -12,11 +12,13 @@ export const useUsuariosStore = defineStore({
       return this.usuarios.find((usuario) => usuario.id === id);
     },
     async cargarUsuarios() {
-      if (this.usuarios.length === 0) {
-        const response = await fetch('/public/datos.json');
+      if (!localStorage.getItem('usuarios')) {
+        const response = await fetch('datos.json');
         const data = await response.json();
         this.usuarios = data;
         localStorage.setItem('usuarios', JSON.stringify(this.usuarios));
+      } else {
+        this.usuarios = JSON.parse(localStorage.getItem('usuarios'));
       }
     },
     async agregarUsuario(usuario) {

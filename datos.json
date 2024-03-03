@@ -1,0 +1,17 @@
+[{
+    "id": 1,
+    "nombre":"Juana",
+    "rol":"Profesor",
+    "contraseña":"user"
+},{
+    "id": 2,
+    "nombre":"admin",
+    "rol":"Profesor",
+    "contraseña":"admin"
+},
+{
+    "id": 3,
+    "nombre":"Pedro",
+    "rol":"Alumno",
+    "contraseña":"user"
+}]

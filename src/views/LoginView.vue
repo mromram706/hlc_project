@@ -3,23 +3,25 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSesionStore } from '@/store/sesion';
+import { useUsuariosStore } from '@/store/usuariosStore';
 
 const router = useRouter();
 const nombre = ref("");
 const contraseña = ref("");
 const rol = ref("");
 const sesionStore = useSesionStore();
+const usuariosStore = useUsuariosStore();
 
 const iniciarSesion = async () => {
   try {
-    const response = await fetch('public/datos.json');
-    const data = await response.json();
-    const usuarioValido = data.find(usuario =>
+    
+
+    
+    const usuarioValido = usuariosStore.usuarios.find(usuario =>
       usuario.nombre === nombre.value &&
       usuario.contraseña === contraseña.value &&
       usuario.rol === rol.value
     );
-
     if (usuarioValido) {
       sesionStore.setUser({ id: usuarioValido.id, nombre: nombre.value, rol: rol.value });
       router.push("/");
@@ -27,7 +29,7 @@ const iniciarSesion = async () => {
       alert("Datos de inicio de sesión incorrectos");
     }
   } catch (error) {
-    console.error("Error al cargar el fichero JSON:", error);
+    console.error("Error al verificar el usuario:", error);
   }
 };
 </script>
