@@ -1,8 +1,7 @@
 <template>
     <div class="container mt-5">
         <h1 class="mb-4">Exámenes</h1>
-        <router-link to="/crear-examen" class="btn btn-success mb-3">Crear</router-link>
-        <div>
+        <router-link v-if="sesionStore.usuario.rol === 'Profesor'" to="/crear-examen" class="btn btn-success mb-3">Crear</router-link>        <div>
             <h2 class="mb-3">Lista de Exámenes</h2>
             <button @click="ordenarPorFecha" class="btn btn-primary mb-3">Ordenar por fecha</button>
 
